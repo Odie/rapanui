@@ -43,7 +43,7 @@ RNFactory.width = 0
 RNFactory.height = 0
 
 function RNFactory.init()
-
+    
     local lwidth, lheight, screenlwidth, screenHeight
     local screenX, screenY = MOAIEnvironment.screenWidth, MOAIEnvironment.screenHeight
 
@@ -660,7 +660,7 @@ function RNFactory.createRect(x, y, width, height, params)
 end
 
 function RNFactory.createCircle(x, y, r, params)
-    local parentGroup, top, left
+    local parentGroup, top, left, drawMode
     local rgb = { 255, 255, 255 }
 
     if params then
@@ -669,6 +669,7 @@ function RNFactory.createCircle(x, y, r, params)
             top = params.top or 0
             left = params.left or 0
             rgb = params.rgb or rgb
+            drawMode = params.drawMode or nil
         end
     end
 
@@ -678,6 +679,7 @@ function RNFactory.createCircle(x, y, r, params)
     shape.x = x
     shape.y = y
     shape.rotation = 0
+    shape.drawMode = drawMode
 
     if parentGroup ~= nil then
         parentGroup:insert(shape)

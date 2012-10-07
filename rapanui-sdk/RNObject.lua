@@ -673,7 +673,11 @@ function RNObject:loadCircle(x, y, r, rgb)
 
     local function onDraw()
         MOAIGfxDevice.setPenColor(self.shapeR, self.shapeG, self.shapeB, 0.5)
-        MOAIDraw.fillCircle(0, 0, r, 32)
+        local drawFunc = MOAIDraw.fillCircle
+        if self.drawMode == "outline" then
+            drawFunc = MOAIDraw.drawCircle
+        end
+        drawFunc(0, 0, r, 32)
     end
 
     self.gfxQuad = MOAIScriptDeck.new()
